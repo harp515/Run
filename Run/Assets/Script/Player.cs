@@ -10,8 +10,8 @@ namespace Script
         private Rigidbody2D _rd;
         public Slider hpSlider;
 
-        private bool _doubleJumpState = false;
-        private bool _isground = false;
+        private bool _doubleJumpState = true;
+        private bool _isground = true;
         
         private bool getDamage = true;
         private float currentTime = 0;
@@ -31,19 +31,12 @@ namespace Script
             hpSlider.value = (float)hp / (float)maxhp;
             Jump();
             GetDamage();
+            Debug.Log(_isground);
         }
 
         // ReSharper disable Unity.PerformanceAnalysis
         void Jump()
         {
-            
-            if (_rd.velocity.y == 0)
-            {
-                _isground = true;
-            }
-            else
-                _isground = false;
-
             if (_isground)
             {
                 _doubleJumpState = true;
@@ -64,13 +57,19 @@ namespace Script
         {
             Debug.Log("점프");
             _rd.AddForce(Vector2.up * jumpForce);
+            _isground = false;
         }
-        private void OnTriggerEnter2D(Collider2D collision)
+        private void OnTriggerStay2D(Collider2D collision)
         {
             if (collision.gameObject.CompareTag("Wall") && getDamage)
             {
                 hp -= Damage;
-                getDamage = false;
+                if(currentTime == 0)
+                    getDamage = false;
+            }
+            if (collision.gameObject.CompareTag("Floor")) {
+                Debug.Log("부딪힘");
+                _isground = true;
             }
         }
 
