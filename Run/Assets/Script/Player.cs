@@ -6,7 +6,7 @@ namespace Script
 {
     public class Player : MonoBehaviour
     {
-        [SerializeField] float jumpForce, doublejumpForce;
+        [SerializeField] float jumpForce = 600.0f, doublejumpForce = 600.0f;
         private Rigidbody2D _rd;
         public Slider hpSlider;
 

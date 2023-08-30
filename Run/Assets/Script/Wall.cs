@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Wall : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public float wallSpeed = 4;
     void Start()
     {
         
@@ -13,6 +13,6 @@ public class Wall : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        transform.Translate(Vector2.left * (Time.deltaTime * wallSpeed));
     }
 }
