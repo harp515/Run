@@ -8,8 +8,8 @@ public class GameManager : MonoBehaviour
     public GameObject[] DownWalls;
     public Transform[] SpawnPoint;
 
-    public float maxSpawnDelay;
-    public float curSpawnDelay;
+    private float maxSpawnDelay;
+    private float curSpawnDelay;
     
     private int ranWalls;
     // Update is called once per frame
@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
         if (curSpawnDelay > maxSpawnDelay)
         {
             SpawnWalls();
-            maxSpawnDelay = Random.Range(1, 1.5f);
+            maxSpawnDelay = Random.Range(0.75f, 1.5f);
             curSpawnDelay = 0;
         }
     }
@@ -37,7 +37,7 @@ public class GameManager : MonoBehaviour
         else if (ranPoint == 1)
         {
             ranWalls = Random.Range(0, DownWalls.Length);
-            Instantiate(UpWalls[ranWalls],
+            Instantiate(DownWalls[ranWalls],
                 SpawnPoint[ranPoint].position,
                 SpawnPoint[ranPoint].rotation);
         }
