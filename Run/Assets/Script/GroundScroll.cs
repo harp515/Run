@@ -7,7 +7,7 @@ public class GroundScroll : MonoBehaviour
     public SpriteRenderer[] tiles;
     public Sprite[] groundImg;
     private SpriteRenderer temp;
-    public float speed = 4;
+    public float speed = 6;
     void Start()
     {
         temp = tiles[0];

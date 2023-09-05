@@ -42,13 +42,15 @@
   </PropertyGroup>
   <ItemGroup>
      <Compile Include="Assets/Script/Player.cs" />
-     <Compile Include="Assets/Script/GroundScroll.cs" />
      <Compile Include="Assets/Script/Wall.cs" />
+     <Compile Include="Assets/Script/GroundScroll.cs" />
+     <Compile Include="Assets/Script/GameManager.cs" />
      <Folder Include="Assets" />
      <Folder Include="Assets/Scenes" />
      <Folder Include="Assets/Simple 2D Platformer BE2/Sprites" />
      <Folder Include="Assets/Script" />
      <Folder Include="Assets/Simple 2D Platformer BE2" />
+     <Folder Include="Assets/Image" />
      <Folder Include="Assets/Prefeb" />
      <Reference Include="UnityEngine">
      <HintPath>/Applications/Unity/Hub/Editor/2021.3.21f1/Unity.app/Contents/Managed/UnityEngine/UnityEngine.dll</HintPath>

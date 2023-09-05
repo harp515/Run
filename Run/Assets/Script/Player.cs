@@ -20,6 +20,7 @@ namespace Script
         public float maxhp = 300.0f;
         public float hp = 300.0f;
         public float Damage = 30;
+        public float SpinSpeed = 9;
 
         private void Start()
         {
@@ -31,7 +32,7 @@ namespace Script
             hpSlider.value = (float)hp / (float)maxhp;
             Jump();
             GetDamage();
-            Debug.Log(_isground);
+            Spin();
         }
 
         // ReSharper disable Unity.PerformanceAnalysis
@@ -82,6 +83,11 @@ namespace Script
                     getDamage = true;
                     currentTime = 0;
                 }
+        }
+
+        void Spin()
+        {
+            transform.Rotate(Vector3.back * Time.deltaTime * SpinSpeed);
         }
     }
 }
