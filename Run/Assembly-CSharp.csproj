@@ -44,7 +44,9 @@
      <Compile Include="Assets/Script/Player.cs" />
      <Compile Include="Assets/Script/Wall.cs" />
      <Compile Include="Assets/Script/GroundScroll.cs" />
+     <Compile Include="Assets/Script/Destroyer.cs" />
      <Compile Include="Assets/Script/GameManager.cs" />
+     <Compile Include="Assets/Script/Coin.cs" />
      <Folder Include="Assets" />
      <Folder Include="Assets/Scenes" />
      <Folder Include="Assets/Simple 2D Platformer BE2/Sprites" />

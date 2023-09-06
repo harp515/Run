@@ -1,11 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
-public class Wall : MonoBehaviour
+public class Coin : MonoBehaviour
 {
-    private float wallSpeed = 9;
+    // Start is called before the first frame update
     void Start()
     {
         
@@ -14,6 +13,5 @@ public class Wall : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(Vector2.left * (Time.deltaTime * wallSpeed));
     }
 }
