@@ -44,16 +44,21 @@
      <Compile Include="Assets/Script/Player.cs" />
      <Compile Include="Assets/Script/Wall.cs" />
      <Compile Include="Assets/Script/GroundScroll.cs" />
+     <Compile Include="Assets/Script/Coin.cs" />
      <Compile Include="Assets/Script/Destroyer.cs" />
      <Compile Include="Assets/Script/GameManager.cs" />
-     <Compile Include="Assets/Script/Coin.cs" />
      <Folder Include="Assets" />
      <Folder Include="Assets/Scenes" />
+     <Folder Include="Assets/2D Pixel Art Platformer Biome - American Forest" />
      <Folder Include="Assets/Simple 2D Platformer BE2/Sprites" />
      <Folder Include="Assets/Script" />
+     <Folder Include="Assets/Resources" />
+     <Folder Include="Assets/Nature_pixel_art_assets" />
      <Folder Include="Assets/Simple 2D Platformer BE2" />
-     <Folder Include="Assets/Image" />
-     <Folder Include="Assets/Prefeb" />
+     <Folder Include="Assets/Resources/Image" />
+     <Folder Include="Assets/Nature_pixel_art_assets/textures" />
+     <Folder Include="Assets/Resources/Prefeb/Spawn" />
+     <Folder Include="Assets/Resources/Prefeb" />
      <Reference Include="UnityEngine">
      <HintPath>/Applications/Unity/Hub/Editor/2021.3.21f1/Unity.app/Contents/Managed/UnityEngine/UnityEngine.dll</HintPath>
      </Reference>

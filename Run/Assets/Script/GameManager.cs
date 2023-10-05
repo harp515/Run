@@ -1,16 +1,21 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Script;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviour
 {
-    public GameObject[] UpWalls;
-    public GameObject[] DownWalls;
-    public GameObject player;
-    public Transform[] SpawnPoint;
-    public Text scoreText;
+    private Transform SpawnA;
+    private Transform SpawnB;
+    
+    GameObject UpWalls;
+    GameObject DownWalls;
+    Player player;
+    Text scoreText;
 
     private float maxSpawnDelay;
     private float curSpawnDelay;
@@ -20,23 +25,35 @@ public class GameManager : MonoBehaviour
     int poolSize = 20;
     private GameObject[] UwallObjectPool;
     private GameObject[] DwallObjectPool;
-    
+
+    private void Awake()
+    {
+        SpawnA = Resources.Load("Prefeb/Spawn/Up").GetComponent<Transform>();  
+        SpawnB = Resources.Load("Prefeb/Spawn/Down").GetComponent<Transform>();
+
+        UpWalls = Resources.Load<GameObject>("Prefeb/Wall Up");
+        DownWalls = Resources.Load<GameObject>("Prefeb/Wall Down");
+        player = Resources.Load<Player>("Prefeb/Player");
+        scoreText = Resources.Load("Prefeb/Score").GetComponent<Text>();
+    }
+
     void Start()
     {
+        
+        
+        
         UwallObjectPool = new GameObject[poolSize];
         DwallObjectPool = new GameObject[poolSize];
 
 
         for (int i = 0; i < poolSize; i++) {
-            ranWalls = Random.Range(0, UpWalls.Length);
-            GameObject Upwall = Instantiate(UpWalls[ranWalls]);
+            GameObject Upwall = Instantiate(UpWalls);
             
             Upwall.SetActive(false);
             UwallObjectPool[i] = Upwall;
         }
         for (int i = 0; i < poolSize; i++) {
-            ranWalls = Random.Range(0, DownWalls.Length);
-            GameObject Downwall = Instantiate(DownWalls[ranWalls]);
+            GameObject Downwall = Instantiate(DownWalls);
             Downwall.SetActive(false);
             DwallObjectPool[i] = Downwall;
         }
@@ -48,11 +65,11 @@ public class GameManager : MonoBehaviour
         if (curSpawnDelay > maxSpawnDelay)
         {
             SpawnWalls();
-            maxSpawnDelay = Random.Range(0.75f, 1.5f);
+            maxSpawnDelay = Random.Range(0.75f, 1f);
             curSpawnDelay = 0;
         }
 
-        Player playerLogic = player.GetComponent<Player>();
+        Player playerLogic = player;
         scoreText.text = string.Format("{0:n0}",playerLogic.score);
     }
     void SpawnWalls()
@@ -67,7 +84,7 @@ public class GameManager : MonoBehaviour
                 if (wall.activeSelf == false) {
                     wall.SetActive(true);
                 
-                    wall.transform.position = SpawnPoint[ranPoint].position;
+                    wall.transform.position = SpawnA.position;
                         
                     break;
                 }
@@ -79,7 +96,7 @@ public class GameManager : MonoBehaviour
                 if (wall.activeSelf == false) {
                     wall.SetActive(true);
                 
-                    wall.transform.position = SpawnPoint[ranPoint].position;
+                    wall.transform.position = SpawnB.position;
                         
                     break;
                 }
