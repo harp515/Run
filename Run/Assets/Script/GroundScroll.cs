@@ -11,6 +11,7 @@ public class GroundScroll : MonoBehaviour
     public float x = 2;
     public float y = -4;
     public float returnPos = -12;
+    private float addWallSpeed;
     void Start()
     {
         temp = tiles[0];
@@ -21,6 +22,7 @@ public class GroundScroll : MonoBehaviour
     /// </summary>
     void Update()
     {
+        addWallSpeed += Time.deltaTime * 0.05f;
         for (int i = 0; i < tiles.Length; i++)
         {
             if (returnPos > tiles[i].transform.position.x)
@@ -37,7 +39,7 @@ public class GroundScroll : MonoBehaviour
         }
         for (int i = 0; i < tiles.Length; i++)
         {
-            tiles[i].transform.Translate(new Vector2(-1,0) * (Time.deltaTime * speed));
+            tiles[i].transform.Translate(new Vector2(-1,0) * (Time.deltaTime * (speed + addWallSpeed)));
         }
     }
 }

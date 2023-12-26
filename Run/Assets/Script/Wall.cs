@@ -5,15 +5,10 @@ using UnityEngine;
 
 public class Wall : MonoBehaviour
 {
-    private float wallSpeed = 9;
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
+    public float wallSpeed = 9;
     void Update()
     {
-        transform.Translate(Vector2.left * (Time.deltaTime * wallSpeed));
+        GameManager manager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        transform.Translate(Vector2.left * (Time.deltaTime * (wallSpeed + manager.addWallSpeed)));
     }
 }

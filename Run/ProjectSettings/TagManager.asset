@@ -8,7 +8,9 @@ TagManager:
   - Floor
   - SpawnPoint
   - Destroyer
-  - Coin
+  - Moon
+  - Lazer
+  - Heal
   layers:
   - Default
   - TransparentFX

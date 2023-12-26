@@ -10,37 +10,32 @@ namespace Script
     {
         [SerializeField] private float jumpForce = 12.0f;
         private Rigidbody2D _rd;
-        private Slider hpSlider;
+        public Slider hpSlider;
 
         private bool _doubleJumpState = true;
         private bool _isground = true;
-        private bool getDamage = true;
+        private bool _getDamage = true;
         
-        private float currentTime = 0;
+        private float _currentTime = 0;
 
-        private float noDamage = 2.0f;
-        private float maxhp = 300.0f;
+        private readonly float _noDamage = 2.0f;
+        private const float Maxhp = 300.0f;
         public float hp = 300.0f;
-        private float Damage = 30;
-        private float SpinSpeed = 270;
-
-        public int score = 0;
-        private int setScore = 100;
+        private float _damage = 30;
+        private readonly float _spinSpeed = 270;
+        private float addWallSpeed;
 
         private void Awake()
-        {
-            hpSlider = Resources.Load("Prefeb/Hp Slider").GetComponent<Slider>();
-        }
-
-        private void Start()
         {
             _rd = GetComponent<Rigidbody2D>();
         }
 
         private void Update()
         {
-            hpSlider = Resources.Load("Prefeb/Hp Slider").GetComponent<Slider>();
-            hpSlider.value = (float)hp / (float)maxhp;
+            addWallSpeed += Time.deltaTime * 0.05f;
+            if (hp > Maxhp)
+                hp = Maxhp;
+            hpSlider.value = (float)hp / (float)Maxhp;
             Jump();
             GetDamage();
             Spin();
@@ -55,50 +50,76 @@ namespace Script
             }
 
             if (_isground && Input.GetButton("Jump"))
-                JumpAddForce();
+                JumpAddForce(jumpForce);
             else if (_doubleJumpState && Input.GetButtonDown("Jump"))
             {   
                 _doubleJumpState = false;
-                JumpAddForce();
+                JumpAddForce(jumpForce * 0.75f);
             }
+
+            if (Input.touchCount > 0)
+            {
+                Touch touch = Input.GetTouch(0);
+                if (_isground && touch.phase == TouchPhase.Began)
+                    JumpAddForce(jumpForce);
+                else if (_doubleJumpState && touch.phase == TouchPhase.Began)
+                {   
+                    _doubleJumpState = false;
+                    JumpAddForce(jumpForce * 0.75f);
+                }
+            }
+            
         }
 
         // ReSharper disable Unity.PerformanceAnalysis
-        void JumpAddForce()
+        void JumpAddForce(float jumpPower)
         {
-            _rd.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
+            _rd.AddForce(new Vector2(0f, jumpPower), ForceMode2D.Impulse);
             _isground = false;
         }
+
         private void OnTriggerStay2D(Collider2D collision)
         {
-            if (collision.gameObject.CompareTag("Wall") && getDamage)
+            if (collision.gameObject.CompareTag("Wall") && _getDamage)
             {
-                hp -= Damage;
-                if(currentTime == 0)
-                    getDamage = false;
+                hp -= _damage;
+                if (_currentTime == 0)
+                    _getDamage = false;
             }
-            if (collision.gameObject.CompareTag("Floor")) {
+
+            if (collision.gameObject.CompareTag("Moon") && _getDamage)
+            {
+                hp -= _damage * 2.5f;
+                if (_currentTime == 0)
+                    _getDamage = false;
+            }
+
+            if (collision.gameObject.CompareTag("Floor"))
+            {
                 _isground = true;
             }
-            if (collision.gameObject.CompareTag("Coin"))
+
+            if (collision.gameObject.CompareTag("Heal"))
             {
-                score += Random.Range(setScore/4,setScore);
+                hp += 15;
+                Destroy(collision.gameObject);
             }
         }
 
         void GetDamage()
         {
-            if (!getDamage)
-                currentTime += Time.deltaTime;
-            if (currentTime > noDamage) {
-                    getDamage = true;
-                    currentTime = 0;
+            if (!_getDamage)
+                _currentTime += Time.deltaTime;
+            if (_currentTime > _noDamage) {
+                    _getDamage = true;
+                    _currentTime = 0;
             }
         }
 
         void Spin()
         {
-            transform.Rotate(Vector3.back * (Time.deltaTime * SpinSpeed));
+            GameManager manager = GameObject.Find("GameManager").GetComponent<GameManager>();
+            transform.Rotate(Vector3.back * (Time.deltaTime * (_spinSpeed + addWallSpeed * 2)));
         }
     }
 }

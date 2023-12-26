@@ -11,5 +11,15 @@ public class Destroyer : MonoBehaviour
             collision.gameObject.SetActive(false);
             
         }
+        if (collision.gameObject.CompareTag("Lazer"))
+        {
+            GameManager gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+            gameManager.SpawnLazer();
+            Destroy(collision.gameObject);
+        }
+        if (collision.gameObject.CompareTag("Moon"))
+        {
+            Destroy(collision.gameObject);
+        }
     }
 }
