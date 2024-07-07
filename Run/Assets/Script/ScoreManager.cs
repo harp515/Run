@@ -13,6 +13,13 @@ public class ScoreManager : MonoBehaviour
     private float _scoreTime = 0;
     public int score = 0;
 
+    public static ScoreManager intance = null;
+
+    private void Awake()
+    {
+        intance = this;
+    }
+
     void Update()
     {
         scoreText = GameObject.Find("Score").GetComponent<TMP_Text>();
@@ -24,5 +31,10 @@ public class ScoreManager : MonoBehaviour
         }
         if (player != null)
             _scoreTime += Time.deltaTime;
+    }
+
+    public void GameEnd()
+    {
+        
     }
 }

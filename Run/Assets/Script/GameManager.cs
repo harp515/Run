@@ -44,6 +44,8 @@ public class GameManager : MonoBehaviour
     private GameObject[] _uwallObjectPool;
     private GameObject[] _dwallObjectPool;
     
+    
+    
     private void Awake()
     {
         _spawnA = Resources.Load("Prefeb/Spawn/Up").GetComponent<Transform>();  
@@ -80,7 +82,8 @@ public class GameManager : MonoBehaviour
         if (_playerLogic.hp <= 0)
         {
             SceneManager.LoadScene("Game End");
-            DontDestroyOnLoad(getscore);
+            ScoreManager.intance.GameEnd();
+            //DontDestroyOnLoad(getscore);
         }
         _curSpawnDelay += Time.deltaTime;
 
