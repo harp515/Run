@@ -1,19 +1,18 @@
-#  TANK_SURVIVAL
+#  ALTRUN
 
 ## 프로젝트 소개
-TANK_SURVIVAL은 Unity로 개발된 3D 뱀서류 탱크 게임입니다. PC 환경에서 플레이가 가능하며 포탄을 발사해 몬스터를 쓰러뜨리고 레벨업하고, 성장하며 오래 버티면 되는 게임입니다.
+동아리 ALT의 캐릭터를 활용한 게임으로, 점프를 활용해 장애물을 피하며 많은 점수를 얻는 방식입니다.
 
 ## 개발 인원
 총 1명(클라이언트 개발 1명)
 
 ## 인게임 화면
-![tanksurvival](https://github.com/user-attachments/assets/e11607de-ebe1-4683-9f0b-524a1d8bdab4)
-
+<img width="600" alt="image 6" src="https://github.com/user-attachments/assets/4bef1d25-b392-411c-9fe6-e3a5df1a61c3" />
 
 ## 주요 기능
-1. WASD로 포신을 조작하여 조준할 수 있고, 좌클릭으로 포탄을 발사할 수 있습니다.
-2. 몬스터를 잡으면 나오는 경험치를 모아 레벨업할 수 있습니다.
-3. 레벨업하면 랜덤으로 3가지 카드가 나오고, 그중 한가지를 선택하여 그 카드의 효과를 얻을 수 있습니다.
+1. 화면을 터치하면 캐릭터가 점프합니다
+2. 상, 하단에서 랜덤으로 장애물이 나옵니다.
+3. 장애물과 충돌하면 캐릭터의 체력이 감소합니다.
 
 
 ## 개발 환경
@@ -22,4 +21,4 @@ TANK_SURVIVAL은 Unity로 개발된 3D 뱀서류 탱크 게임입니다. PC 환�
 |-------------------|------------------------------|
 | **Engine**          | Unity 3D                    |
 | **Language**          | C#                           |
-| **Platform**        | PC                  |
+| **Platform**        | Android                  |
